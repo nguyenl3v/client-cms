@@ -6,7 +6,7 @@ import {
   getUserCustomer
 } from "../resources/appChat/action";
 
-const socket = openSocket("http://localhost:4001");
+const socket = openSocket("https://server-cms-api.herokuapp.com");
 
 const listenToSocket = store => {
   socket.on("get/review", function(data) {
