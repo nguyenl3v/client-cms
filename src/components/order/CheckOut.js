@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { PayPalButton } from "react-paypal-button-v2";
 import { API } from "../../config/defaultApi";
 import { ToastContainer } from "react-toastify";
 
@@ -111,26 +110,6 @@ function CheckOut({ cart, addDataOrder }) {
                     ? item.priceSale * item.quantity
                     : item.price * item.quantity}
                 </span>
-                <PayPalButton
-                  amount={
-                    item.priceSale > 0
-                      ? item.priceSale * item.quantity
-                      : item.price * item.quantity
-                  }
-                  // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                  onSuccess={(details, data) => {
-                    console.log(details.payer.name.given_name);
-                    console.log(data);
-
-                    // OPTIONAL: Call your server to save the transaction
-                    return fetch("/paypal-transaction-complete", {
-                      method: "post",
-                      body: JSON.stringify({
-                        orderID: data.orderID
-                      })
-                    });
-                  }}
-                />
               </div>
             ))}
           </div>
