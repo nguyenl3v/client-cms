@@ -1,4 +1,1 @@
-export const API =
-  process.env.NODE_ENV === "production"
-    ? "https://server-cms-api.herokuapp.com"
-    : "http://localhost:4001";
+export const API = "https://server-cms-api.herokuapp.com";
