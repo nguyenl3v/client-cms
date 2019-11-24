@@ -1,0 +1,4 @@
+export const VALUESEARCH = "VALUESEARCH";
+export const SHOWLOADING = "SHOWLOADING";
+export const HIDDENLOADING = "HIDDENLOADING";
+export const DATASEARCH = "DATASEARCH";

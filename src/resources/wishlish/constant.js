@@ -1,0 +1,2 @@
+export const ADDWISHLISH = "ADDWISHLISH";
+export const DELETEWISHLISH = "DELETEWISHLISH";
