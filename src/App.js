@@ -62,7 +62,16 @@ function App() {
         <Route path="/blog" exact component={BlogPage} />
         <Route path="/checkout" exact component={CheckOut} />
       </Switch>
-      <Footer />
+      <Route path="/" exact component={Footer} />
+      <Route path="/blog" exact component={Footer} />
+      <Route path="/blog/:id/:name.html" exact component={Footer} />
+      <Route path="/product" exact component={Footer} />
+      <Route path="/productdetails/:name/:id.html" exact component={Footer} />
+      <Route path="/checkout" exact component={Footer} />
+      <Route path="/login" exact component={Footer} />
+      <Route path="/register" exact component={Footer} />
+      <Route path="/cart" exact component={Footer} />
+      <Route path="/wishlish" exact component={Footer} />
     </div>
   );
 }
