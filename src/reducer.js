@@ -14,6 +14,7 @@ import adminBlog from "./resources/admin/blog/reducer";
 import search from "./resources/search/reducer";
 import adminFooter from "./resources/admin/footer/reducer";
 import order from "./resources/order/reducer";
+import loading from "./resources/loading/reducer";
 
 const rootReducer = combineReducers({
   adminMenu,
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   appChat,
   search,
   adminFooter,
-  order
+  order,
+  loading
 });
 export default rootReducer;

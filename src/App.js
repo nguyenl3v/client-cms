@@ -33,6 +33,7 @@ function PrivateRoute({ component: Component, ...rest }) {
 function App() {
   return (
     <div className="App">
+      <Loading />
       <Route path="/" exact component={Header} />
       <Route path="/" exact component={SlideShow} />
       <Route path="/" exact component={ProductTabs} />
