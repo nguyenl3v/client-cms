@@ -17,6 +17,7 @@ import BlogItem from "./container/blog/BlogItem";
 import BlogPage from "./container/blog/BlogPage";
 import Footer from "./container/footer/Footer";
 import CheckOut from "./container/order/CheckOut";
+import Loading from "./components/loading/Loading";
 
 const token = sessionStorage.getItem("token");
 function PrivateRoute({ component: Component, ...rest }) {

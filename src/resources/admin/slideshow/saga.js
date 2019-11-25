@@ -9,14 +9,18 @@ import {
 } from "./constants";
 import { ToastifyField, ToastifySuccess } from "../../../components/Toastify";
 import axios from "axios";
+import { showLoading, hiddenLoading } from "../../loading/action";
 
 function* getDataSlideShow() {
+  yield put(showLoading());
   const res = yield axios.get(`${API}/admin/slideshow`);
   yield put(_getDataSlideShow(res.data));
+  yield put(hiddenLoading());
 }
 
 function* addDataSlideShow() {
   yield takeEvery(ADDDATASLIDESHOW, function* _addDataSlideShow({ payload }) {
+    yield put(showLoading());
     try {
       const res = yield axios.post(`${API}/admin/slideshow/add`, payload);
       ToastifySuccess(res.data.msg);
@@ -24,11 +28,13 @@ function* addDataSlideShow() {
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 
 function* uploadImage() {
   yield takeEvery(UPLOAD, function* _uploadImage({ payload }) {
+    yield put(showLoading());
     const { image } = payload;
     try {
       yield axios.post(`${API}/admin/slideshow/upload`, image, {
@@ -37,6 +43,7 @@ function* uploadImage() {
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 
@@ -44,6 +51,7 @@ function* deleteDataSlideShow() {
   yield takeEvery(DELETEDATASLIDESHOW, function* _deleteDataSlideShow({
     payload
   }) {
+    yield put(showLoading());
     const { id, file } = payload;
     try {
       const res = yield axios.get(
@@ -54,11 +62,13 @@ function* deleteDataSlideShow() {
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 
 function* editDataSlideShow() {
   yield takeEvery(EDITDATASLIDESHOW, function* _editDataSlideShow({ payload }) {
+    yield put(showLoading());
     const { heading, title, button, buttonLink, urlFile, id } = payload;
     try {
       const res = yield axios({
@@ -71,6 +81,7 @@ function* editDataSlideShow() {
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 

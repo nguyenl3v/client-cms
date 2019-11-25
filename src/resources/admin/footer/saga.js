@@ -9,14 +9,18 @@ import {
   EDITDATAFOOTER
 } from "./constant";
 import { ToastifyField, ToastifySuccess } from "../../../components/Toastify";
+import { showLoading, hiddenLoading } from "../../loading/action";
 
 function* getDataFooter() {
+  yield put(showLoading());
   const res = yield axios.get(`${API}/footer`);
   yield put(_getDataFooter(res.data));
+  yield put(hiddenLoading());
 }
 
 function* uploadLogoFooter() {
   yield takeEvery(UPLOADLOGOFOOTER, function* _uploadLogoFooter({ payload }) {
+    yield put(showLoading());
     try {
       yield axios.post(`${API}/footer/upload`, payload.logo, {
         headers: { "Content-type": "multipart/form-data" }
@@ -24,11 +28,13 @@ function* uploadLogoFooter() {
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 
 function* addDataFooter() {
   yield takeEvery(ADDDATAFOOTER, function* _addDataFooter({ payload }) {
+    yield put(showLoading());
     try {
       const res = yield axios.post(`${API}/footer/add`, payload);
       ToastifySuccess(res.data.msg);
@@ -36,11 +42,13 @@ function* addDataFooter() {
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 
 function* deleteDataFooter() {
   yield takeEvery(DELETEDATAFOOTER, function* _deleteDataFooter({ payload }) {
+    yield put(showLoading());
     try {
       const res = yield axios.get(
         `${API}/footer/delete/${payload.id}/${payload.urlFile}`
@@ -50,11 +58,13 @@ function* deleteDataFooter() {
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 
 function* editDataFooter() {
   yield takeEvery(EDITDATAFOOTER, function* _editDataFooter({ payload }) {
+    yield put(showLoading());
     try {
       const res = yield axios.post(`${API}/footer/edit`, payload);
       ToastifySuccess(res.data.msg);
@@ -62,6 +72,7 @@ function* editDataFooter() {
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 

@@ -4,20 +4,24 @@ import axios from "axios";
 import { API } from "../../config/defaultApi";
 import { ToastifyField } from "../../components/Toastify";
 import { _getUser } from "./action";
+import { showLoading, hiddenLoading } from "../loading/action";
 
 function* userRegister() {
   yield takeEvery(USERREGISTER, function* _userRegister({ payload }) {
+    yield put(showLoading());
     try {
       yield axios.post(`${API}/register`, payload);
       window.location.href = "/login";
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 
 function* userLogin() {
   yield takeEvery(USERLOGIN, function* _userLogin({ payload }) {
+    yield put(showLoading());
     try {
       const res = yield axios.post(`${API}/login`, payload);
       sessionStorage.setItem("userToken", JSON.stringify(res.data));
@@ -25,6 +29,7 @@ function* userLogin() {
     } catch (error) {
       ToastifyField(error.response.data.msg);
     }
+    yield put(hiddenLoading());
   });
 }
 
